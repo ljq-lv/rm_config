@@ -12,6 +12,12 @@ rm_referee:
         config: { start_position: [ 50, 650 ], size: 15, width: 2, title: "drag:" }
       - name: "temperature"
         config: { start_position: [ 50, 700 ], size: 15, width: 2, title: "temperature:" }
+      - name: "gripper"
+        config: { start_position: [ 50, 750 ], size: 15, width: 2, title: "gripper:" }
+      - name: "exchange"
+        config: { start_position: [ 50, 800 ], size: 15, width: 2, title: "exchange:" }
+      - name: "planning"
+        config: { start_position: [ 50, 850 ], size: 15, width: 2, title: "planning_result:" }
     time_change:
       - name: "temperature"
         config: { start_position: [ 400, 650 ], size: 15, width: 2, delay: 0.5 }
