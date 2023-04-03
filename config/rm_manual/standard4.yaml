@@ -12,7 +12,7 @@ rm_manual:
     capacitor_threshold: 0.1
     charge_power: 20
     extra_power: 30
-    burst_power: 200
+    burst_power: 240
   vel:
     topic: "/cmd_vel"
     power_limit_topic: "/controllers/chassis_controller/command"
@@ -55,8 +55,8 @@ rm_manual:
       low_shoot_frequency: 10
       high_shoot_frequency: 20
       burst_shoot_frequency: 20
-      safe_shoot_frequency: 3
-      heat_coeff: 12.0
+      safe_shoot_frequency: 20
+      heat_coeff: 8.0
       type: "ID1_17MM"
   cover:
     topic: "/controllers/cover_controller/command"
@@ -83,17 +83,14 @@ rm_manual:
 
   gimbal_calibration:
     - start_controllers:
+        - controllers/cover_calibration_controller
         - controllers/gimbal_calibration_controller
       stop_controllers:
+        - controllers/cover_controller
         - controllers/gimbal_controller
       services_name:
-        - /controllers/gimbal_calibration_controller/is_calibrated
-    - start_controllers:
-        - controllers/cover_calibration_controller
-      stop_controllers:
-        - controllers/cover_controller
-      services_name:
         - /controllers/cover_calibration_controller/is_calibrated
+        - /controllers/gimbal_calibration_controller/is_calibrated
   shooter_calibration:
     - start_controllers:
         - controllers/trigger_calibration_controller
@@ -101,6 +98,47 @@ rm_manual:
         - controllers/shooter_controller
       services_name:
         - /controllers/trigger_calibration_controller/is_calibrated
+  ui:
+    trigger_change:
+      - name: "chassis"
+        config: { start_position: [ 400, 850 ], size: 15, width: 2, title: "chassis: " }
+      - name: "gimbal"
+        config: { start_position: [ 400, 800 ], size: 15, width: 2, title: "gimbal:  " }
+      - name: "shooter"
+        config: { start_position: [ 400, 750 ], size: 15, width: 2, title: "shooter:" }
+      - name: "target"
+        config: { start_position: [ 400, 700 ], size: 15, width: 2, title: "target:" }
+    time_change:
+      - name: "capacitor"
+        config: { start_position: [ 900, 100 ], size: 15, width: 2, delay: 0.5 }
+    fixed:
+      - name: "2m"
+        config: { type: "line", width: 2, color: "yellow",
+                  start_position: [ 925, 435 ], end_position: [ 995, 435 ] }
+      - name: "3m"
+        config: { type: "line", width: 2, color: "yellow",
+                  start_position: [ 935, 420 ], end_position: [ 985, 420 ] }
+      - name: "5m"
+        config: { type: "line", width: 2, color: "yellow",
+                  start_position: [ 948, 400 ], end_position: [ 972, 400 ] }
+      - name: "mid"
+        config: { type: "line", width: 2, color: "yellow",
+                  start_position: [ 960, 400 ], end_position: [ 960, 540 ] }
+    flash:
+      - name: "spin"
+        config: { start_position: [ 850, 750 ], size: 20, width: 2,
+                  color: "yellow", content: "please spin!!", delay: 0.8 }
+      - name: "cover"
+        config: { start_position: [ 830, 700 ], size: 25, width: 2,
+                  color: "green", content: "cover open!!", delay: 0.8 }
+      - name: "armor0"
+        config: { type: "circle", width: 3, radius: 50, color: "yellow", delay: 0.75 }
+      - name: "armor1"
+        config: { type: "circle", width: 3, radius: 50, color: "yellow", delay: 0.75 }
+      - name: "armor2"
+        config: { type: "circle", width: 3, radius: 50, color: "yellow", delay: 0.75 }
+      - name: "armor3"
+        config: { type: "circle", width: 3, radius: 50, color: "yellow", delay: 0.75 }
 
 controllers:
   cover_controller:

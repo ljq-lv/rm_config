@@ -1,24 +1,22 @@
 rm_hw:
   bus:
     - can0
-    - can1
   loop_frequency: 1000
   cycle_time_error_threshold: 0.001
-  thread_priority: 95
   # Configurations of the actuators
   actuators:
     yaw_joint_motor:
-      bus: can1
+      bus: can0
       id: 0x207
       type: rm_6020
       lp_cutoff_frequency: 30
     left_pitch_joint_motor:
-      bus: can1
+      bus: can0
       id: 0x206
       type: rm_6020
       lp_cutoff_frequency: 30
     right_pitch_joint_motor:
-      bus: can1
+      bus: can0
       id: 0x205
       type: rm_6020
       lp_cutoff_frequency: 30
@@ -38,28 +36,3 @@ rm_hw:
       type: rm_2006
       lp_cutoff_frequency: 150
 
-  gpios:
-    calibration_left:
-      pin: 656
-      direction: in
-    calibration_right:
-      pin: 657
-      direction: in
-    down_left:
-      pin: 658
-      direction: in
-    down_right:
-      pin: 659
-      direction: in
-    photoelectric_gate_2:
-      pin: 660
-      direction: in
-    photoelectric_gate_3:
-      pin: 661
-      direction: in
-    photoelectric_gate_4:
-      pin: 662
-      direction: in
-    calibration_yaw:
-      pin: 663
-      direction: in

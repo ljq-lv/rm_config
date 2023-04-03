@@ -2,9 +2,8 @@ rm_manual:
   robot_type: "dart"
   left_pitch:
     topic: "/controllers/left_pitch_controller/command"
-    position_outpost: -0.0084
+    position_outpost: 0.
     position_base: 0.
-    scale_micro: 0.0001
     joint: "left_pitch_joint"
   yaw:
     topic: "/controllers/yaw_controller/command"
@@ -14,22 +13,15 @@ rm_manual:
   friction_left:
     topic: "/controllers/left_friction_controller/command"
     joint: "left_friction_wheel_joint"
-    qd_1: 110
-    qd_2: 100
-    qd_3: 90
-    qd_4: 80
-    qd_base_1: 620
-    qd_base_2: 600
-    qd_base_3: 580
-    qd_base_4: 560
+    qd_: 440
   friction_right:
     topic: "/controllers/right_friction_controller/command"
     joint: "right_friction_wheel_joint"
-    qd_: 430
+    qd_: 440
   trigger:
     topic: "/controllers/trigger_controller/command"
     joint: "trigger_joint"
-    upward_vel: -0.004
+    upward_vel: -0.01
   controllers_list:
     state_controllers:
       - controllers/robot_state_controller
@@ -41,7 +33,6 @@ rm_manual:
       - controllers/right_friction_controller
       - controllers/trigger_controller
       - controllers/mimic_joint1_controller
-      - controllers/gpio_controller
     calibration_controllers:
       - controllers/left_pitch_calibration_controller
       - controllers/right_pitch_calibration_controller
@@ -58,12 +49,9 @@ rm_manual:
     - start_controllers:
         - controllers/left_pitch_calibration_controller
         - controllers/right_pitch_calibration_controller
-        - controllers/yaw_calibration_controller
       stop_controllers:
         - controllers/left_pitch_controller
         - controllers/mimic_joint1_controller
-        - controllers/yaw_controller
       services_name:
         - /controllers/left_pitch_calibration_controller/is_calibrated
         - /controllers/right_pitch_calibration_controller/is_calibrated
-        - /controllers/yaw_calibration_controller/is_calibrated
