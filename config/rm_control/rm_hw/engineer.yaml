@@ -5,24 +5,14 @@ rm_hw:
     - can2
     - can3
 
-  loop_frequency: 600
+  loop_frequency: 800
   cycle_time_error_threshold: 0.001
   thread_priority: 95
   # Configurations of the actuators
   actuators:
-    mimic_joint1_motor:
-      bus: can1
-      id: 0x201
-      type: rm_3508
-      need_calibration: true
     joint1_motor:
       bus: can1
       id: 0x204
-      type: rm_3508
-      need_calibration: true
-    mimic_joint2_motor:
-      bus: can1
-      id: 0x202
       type: rm_3508
       need_calibration: true
     joint2_motor:
@@ -50,21 +40,26 @@ rm_hw:
       id: 0x206
       type: rm_3508
       need_calibration: true
+    joint7_motor:
+      bus: can2
+      id: 0x201
+      type: rm_2006
+      need_calibration: true
 
     yaw_joint_motor:
-      bus: can2
+      bus: can1
       id: 0x202
       type: rm_3508
       need_calibration: true
     pitch_joint_motor:
-      bus: can2
-      id: 0x201
+      bus: can1
+      id: 0x206
       type: rm_3508
       need_calibration: true
 
     drag_joint_motor:
-      bus: can0
-      id: 0x202
+      bus: can1
+      id: 0x205
       type: rm_3508
       need_calibration: true
 
@@ -109,26 +104,26 @@ rm_hw:
       type: rm_6020
       lp_cutoff_frequency: 100
     pitch_front_joint_motor:
-      bus: can1
+      bus: can3
       id: 0x206
       type: rm_2006
       lp_cutoff_frequency: 20
       need_calibration: false
     pitch_behind_joint_motor:
       bus: can3
-      id: 0x206
+      id: 0x205
       type: rm_2006
       lp_cutoff_frequency: 20
       need_calibration: false
     roll_left_joint_motor:
-      bus: can3
-      id: 0x205
+      bus: can0
+      id: 0x204
       type: rm_2006
       lp_cutoff_frequency: 20
       need_calibration: false
     roll_right_joint_motor:
-      bus: can1
-      id: 0x205
+      bus: can0
+      id: 0x203
       type: rm_2006
       lp_cutoff_frequency: 20
       need_calibration: false

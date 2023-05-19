@@ -10,65 +10,40 @@ rm_referee:
         config: { start_position: [ 50, 600 ], size: 15, width: 2, title: "stone:" }
       - name: "drag"
         config: { start_position: [ 50, 650 ], size: 15, width: 2, title: "drag:" }
-      - name: "temperature"
-        config: { start_position: [ 50, 700 ], size: 15, width: 2, title: "temperature:" }
       - name: "gripper"
-        config: { start_position: [ 50, 750 ], size: 15, width: 2, title: "gripper:" }
+        config: { start_position: [ 50, 700 ], size: 15, width: 2, title: "gripper:" }
       - name: "exchange"
         config: { start_position: [ 50, 800 ], size: 15, width: 2, title: "exchange:" }
       - name: "planning"
-        config: { start_position: [ 50, 850 ], size: 15, width: 2, title: "planning_result:" }
-    time_change:
-      - name: "temperature"
-        config: { start_position: [ 400, 650 ], size: 15, width: 2, delay: 0.5 }
+        config: { start_position: [ 850, 650 ], size: 15, width: 2, title: "planning:" }
+      - name: "servo_mode"
+        config: { start_position: [ 50, 750 ], size: 15, width: 2, title: "mode:" }
     fixed:
       - name: "line1"
-        config: { type: "line", width: 1, color: "orange",
+        config: { type: "line", width: 3, color: "orange",
                   start_position: [ 1900, 540 ], end_position: [ 0, 540 ] }
-      - name: "lf_sky1"
-        config: { type: "line", width: 1, color: "yellow",
-                  start_position: [ 872, 663 ], end_position: [ 874, 803 ] }
-      - name: "lf_sky2"
-        config: { type: "line", width: 1, color: "yellow",
-                  start_position: [ 874, 803 ], end_position: [ 1047, 802 ] }
-      - name: "lf_sky3"
-        config: { type: "line", width: 1, color: "yellow",
-                  start_position: [ 1047, 802 ], end_position: [ 1053, 663 ] }
-      - name: "lf_sky4"
-        config: { type: "line", width: 1, color: "yellow",
-                  start_position: [ 1053, 663 ], end_position: [ 872, 663 ] }
-      - name: "lf_sky5"
-        config: { type: "line", width: 1, color: "yellow",
-                  start_position: [ 1053, 663 ], end_position: [ 1053, 596 ] }
-      - name: "lf_sky6"
-        config: { type: "line", width: 1, color: "yellow",
-                  start_position: [ 1053, 596 ], end_position: [ 887, 597 ] }
-      - name: "lf_sky7"
-        config: { type: "line", width: 1, color: "yellow",
-                  start_position: [ 887, 597 ], end_position: [ 872, 663 ] }
-      - name: "little_island1"
-        config: { type: "line", width: 1, color: "yellow",
-                  start_position: [ 1083, 344 ], end_position: [ 875, 343 ] }
-      - name: "little_island4"
-        config: { type: "line", width: 1, color: "yellow",
-                  start_position: [ 849, 259 ], end_position: [ 853, 145 ] }
-      - name: "little_island7"
-        config: { type: "line", width: 1, color: "yellow",
-                  start_position: [ 1098, 256 ], end_position: [ 1094, 147 ] }
-
-
-
+#      - name: "lf_sky1"
+#        config: { type: "line", width: 2, color: "yellow",
+#                  start_position: [ 872, 0 ], end_position: [ 874, 1080 ] }
+#      - name: "lf_sky5"
+#        config: { type: "line", width: 2, color: "yellow",
+#                  start_position: [ 1053, 0 ], end_position: [ 1053, 1080 ] }
+      - name: "left_ground"
+        config: { type: "line", width: 2, color: "cyan",
+                  start_position: [ 731, 0 ], end_position: [ 830, 193 ] }
+      - name: "right_ground"
+        config: { type: "line", width: 2, color: "cyan",
+                  start_position: [ 1119, 333 ], end_position: [ 1291, 138 ] }
+      - name: "left_up"
+        config: { type: "line", width: 2, color: "yellow",
+                  start_position: [ 615, 571 ], end_position: [ 756, 571 ] }
+      - name: "left_down"
+        config: { type: "line", width: 2, color: "yellow",
+                  start_position: [ 597, 554 ], end_position: [ 597, 480 ] }
+      - name: "right_up"
+        config: { type: "line", width: 2, color: "yellow",
+                  start_position: [ 1115, 576 ], end_position: [ 1269, 576 ] }
+      - name: "right_down"
+        config: { type: "line", width: 2, color: "yellow",
+                  start_position: [ 1285, 555 ], end_position: [ 1285, 478 ] }
     flash:
-      - name: "ore"
-        config: { start_position: [ 960, 720 ], size: 15, width: 2,
-                  color: "yellow", content: "Ore will released after 10s", delay: 0.4 }
-      - name: "armor0"
-        config: { type: "circle", width: 3, radius: 50, color: "yellow", delay: 0.75 }
-      - name: "armor1"
-        config: { type: "circle", width: 3, radius: 50, color: "yellow", delay: 0.75 }
-      - name: "armor2"
-        config: { type: "circle", width: 3, radius: 50, color: "yellow", delay: 0.75 }
-      - name: "armor3"
-        config: { type: "circle", width: 3, radius: 50, color: "yellow", delay: 0.75 }
-      - name: "aux"
-        config: { type: "line", width: 2, color: "cyan", delay: 0.1 }
