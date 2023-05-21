@@ -1,0 +1,4 @@
+<launch>
+    <node name="polygon_mineral" pkg="polygon_mineral" type="polygon_mineral" respawn="false"/>
+
+</launch>
