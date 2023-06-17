@@ -1,49 +1,53 @@
 rm_referee:
   robot_type: engineer
+  send_ui_queue_delay: 0.15
+  add_ui_frequency: 5
+  add_ui_max_times: 20
   ui:
     trigger_change:
       - name: "step"
         config: { start_position: [ 850, 700 ], size: 15, width: 2, title: "step:" }
-      - name: "reversal"
-        config: { start_position: [ 50, 550 ], size: 15, width: 2, title: "reversal:" }
       - name: "stone"
         config: { start_position: [ 50, 600 ], size: 15, width: 2, title: "stone:" }
-      - name: "drag"
-        config: { start_position: [ 50, 650 ], size: 15, width: 2, title: "drag:" }
       - name: "gripper"
-        config: { start_position: [ 50, 700 ], size: 15, width: 2, title: "gripper:" }
-      - name: "exchange"
-        config: { start_position: [ 50, 800 ], size: 15, width: 2, title: "exchange:" }
-      - name: "planning"
-        config: { start_position: [ 850, 650 ], size: 15, width: 2, title: "planning:" }
+        config: { start_position: [ 50, 650 ], size: 15, width: 2, title: "gripper:" }
       - name: "servo_mode"
-        config: { start_position: [ 50, 750 ], size: 15, width: 2, title: "mode:" }
+        config: { start_position: [ 50, 700 ], size: 15, width: 2, title: "mode:" }
     fixed:
       - name: "line1"
         config: { type: "line", width: 3, color: "orange",
                   start_position: [ 1900, 540 ], end_position: [ 0, 540 ] }
-#      - name: "lf_sky1"
-#        config: { type: "line", width: 2, color: "yellow",
-#                  start_position: [ 872, 0 ], end_position: [ 874, 1080 ] }
-#      - name: "lf_sky5"
-#        config: { type: "line", width: 2, color: "yellow",
-#                  start_position: [ 1053, 0 ], end_position: [ 1053, 1080 ] }
+      - name: "left_down"
+        config: { type: "line", width: 2, color: "yellow",
+                  start_position: [ 597, 614 ], end_position: [ 597, 540 ] }
+      - name: "right_down"
+        config: { type: "line", width: 2, color: "yellow",
+                  start_position: [ 1285, 615 ], end_position: [ 1285, 538 ] }
       - name: "left_ground"
         config: { type: "line", width: 2, color: "cyan",
                   start_position: [ 731, 0 ], end_position: [ 830, 193 ] }
       - name: "right_ground"
         config: { type: "line", width: 2, color: "cyan",
-                  start_position: [ 1119, 333 ], end_position: [ 1291, 138 ] }
-      - name: "left_up"
-        config: { type: "line", width: 2, color: "yellow",
-                  start_position: [ 615, 571 ], end_position: [ 756, 571 ] }
-      - name: "left_down"
-        config: { type: "line", width: 2, color: "yellow",
-                  start_position: [ 597, 554 ], end_position: [ 597, 480 ] }
-      - name: "right_up"
-        config: { type: "line", width: 2, color: "yellow",
-                  start_position: [ 1115, 576 ], end_position: [ 1269, 576 ] }
-      - name: "right_down"
-        config: { type: "line", width: 2, color: "yellow",
-                  start_position: [ 1285, 555 ], end_position: [ 1285, 478 ] }
+                  start_position: [ 1176, 397 ], end_position: [ 1714, 0 ] }
+      - name: "right_ground"
+        config: { type: "line", width: 2, color: "cyan",
+                  start_position: [ 1176, 397 ], end_position: [ 1714, 0 ] }
     flash:
+    time_change:
+      - name: "engineer_joint1"
+        config: { type: "line", width: 5, delay: 0.2,
+                  start_position: [ 850, 100 ], end_position: [ 850, 300 ]}
+        data: { line_length: 100.,  min_val: 0.0025, max_val: 0.45 ,direction: vertical}
+      - name: "engineer_joint2"
+        config: { type: "line", width: 5, delay: 0.2,
+                  start_position: [ 850, 100 ], end_position: [ 950, 200 ]}
+        data: { line_length: 80., min_val: -0.0003 , max_val: 0.2626 ,direction: slant}
+      - name: "engineer_joint3"
+        config: { type: "line", width: 5, delay: 0.2,
+                  start_position: [ 850, 100 ], end_position: [ 1100, 100 ]}
+        data: { line_length: 100., min_val: 0.005 , max_val: -0.2808 ,direction: standard}
+      - name: "engineer_tf"
+        config: { type: "line", width: 5, delay: 0.2,
+                  start_position: [ 1150, 100 ], end_position: [ 1100, 100 ]}
+        tf: { xyz_length: [ 80,80,80 ], x_range: [ -0.0003,0.2626], y_range: [0.005,-0.2808],
+              z_range: [0.0025,0.45],roll_range: [0.1,-1.578], pitch_range: [1.61,-1.60], yaw_range: [-1.66,3.8]}

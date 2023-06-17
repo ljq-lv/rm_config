@@ -3,11 +3,11 @@ rm_manual:
   chassis:
     topic: "/controllers/chassis_controller/command"
     accel_x:
-      - [ 200.0, 5. ]
+      - [ 200.0,8. ]
     accel_y:
-      - [ 200.0,5. ]
+      - [ 200.0,8. ]
     accel_z:
-      - [ 200.0,14. ]
+      - [ 200.0,30. ]
     safety_power: 400
     capacitor_threshold: 0.1
     charge_power: 0
@@ -15,7 +15,18 @@ rm_manual:
     burst_power: 999
     buffer_threshold: 10
     power_gain: 0.85
-    speed_change_scale: 0.3
+    speed_scale: 0.8
+
+    speed_change_scale: 1.0
+    normal_speed_change_scale: 0.6
+    exchange_speed_scale: 0.08
+    low_speed_change_scale: 0.027
+
+    gyro_scale: 1
+    gyro_normal_scale: 0.75
+    gyro_exchange_scale: 0.2
+    gyro_low_scale: 0.025
+
   vel:
     topic: "/cmd_vel"
     max_linear_x:
@@ -27,9 +38,9 @@ rm_manual:
       - [ 80.0,3. ]
       - [ 200.0,3. ]
     max_angular_z:
-      - [ 50.0,6. ]
-      - [ 80.0,6. ]
-      - [ 200.0,6. ]
+      - [ 50.0,9. ]
+      - [ 80.0,9. ]
+      - [ 200.0,9. ]
     gyro_move_reduction: 1
     gyro_rotate_reduction: 1
   servo:
@@ -39,7 +50,7 @@ rm_manual:
     max_linear_z: 0.4
     max_angular_x: 1.3
     max_angular_y: 1.3
-    max_angular_z: 3
+    max_angular_z: 2.5
   gimbal:
     topic: "/controllers/gimbal_controller/command"
     max_yaw_vel: 2.5
@@ -62,13 +73,18 @@ rm_manual:
   reversal:
     topic: "/controllers/multi_dof_controller/command"
   auto_search:
-    pitch: [ -0.1, 0.1]
+    pitch: [ -0.1, 0.1 ]
     yaw: [ -0.10, 0.10 ]
     angle_range: 3.14
     gimbal_search_vel: 0.6
     chassis_search_vel: 0.05
     chassis_tolerance: 0.1
-    x_start_value: 1.2
+    x_start_value: 1.1
+    pre_yaw_scales: 0.2
+
+  chassis_calibrate_motor: [ ]
+  gimbal_calibrate_motor: ["yaw_joint_motor" ,"pitch_joint_motor"]
+  shooter_calibrate_motor: [ ]
 
   controllers_list:
     state_controllers:
@@ -92,25 +108,25 @@ rm_manual:
       - controllers/joint6_calibration_controller
       - controllers/yaw_calibration_controller
       - controllers/pitch_calibration_controller
-      - controllers/drag_calibration_controller
+#      - controllers/drag_calibration_controller
       - controllers/joint7_calibration_controller
 
   calibration_gather:
     - start_controllers:
+        - controllers/yaw_calibration_controller
+        - controllers/pitch_calibration_controller
         - controllers/joint4_calibration_controller
         - controllers/joint1_calibration_controller
         - controllers/joint2_calibration_controller
         - controllers/joint3_calibration_controller
         - controllers/joint6_calibration_controller
         - controllers/joint7_calibration_controller
-        - controllers/yaw_calibration_controller
-        - controllers/pitch_calibration_controller
-        - controllers/drag_calibration_controller
+#        - controllers/drag_calibration_controller
       stop_controllers:
         - controllers/arm_trajectory_controller
-        - controllers/gimbal_controller
-        - controllers/drag_controller
+#        - controllers/drag_controller
         - controllers/joint7_controller
+        - controllers/gimbal_controller
       services_name:
         - /controllers/joint4_calibration_controller/is_calibrated
         - /controllers/joint1_calibration_controller/is_calibrated
@@ -118,9 +134,9 @@ rm_manual:
         - /controllers/joint3_calibration_controller/is_calibrated
         - /controllers/joint6_calibration_controller/is_calibrated
         - /controllers/joint7_calibration_controller/is_calibrated
+#        - /controllers/drag_calibration_controller/is_calibrated
         - /controllers/yaw_calibration_controller/is_calibrated
         - /controllers/pitch_calibration_controller/is_calibrated
-        - /controllers/drag_calibration_controller/is_calibrated
     - start_controllers:
         - controllers/joint4_calibration_controller
         - controllers/joint1_calibration_controller
